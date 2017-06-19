@@ -7,12 +7,21 @@
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.css">
 </head>
 <body>
 	<div id="panel">
-  <h1>Weather App</h1>
+  <h1>Local Weather</h1>
+  <h2 id="sky"></h2>
   
-  <div id="location"></div>
+  <div id="location">
+  	<i style="color: black" class="wi-cloud"></i>
+  </div>
+
+  <label class="switch">
+  <input type="checkbox">
+  <div class="slider round"></div>
+</label>
   
   <button>Get Weather</button>
 </div>
@@ -27,22 +36,42 @@
 $("button").on("click", function() {
 
 	function success(position) {
+
+	var sky = document.getElementById("sky");
+	var location = document.getElementById("location");
+	var panel = document.getElementById("panel");
 	var lat = position.coords.latitude;
 	var lon = position.coords.longitude;
 	var api = "https://api.apixu.com/v1/current.json?key=eac7ca1087144cc6b1c130638171606&q=" + lat + "," + lon;
 
 	$.getJSON(api, function(weather) {
 	console.log(weather);
+	console.log(weather.location.name);
+	console.log(weather.location.region);
+	console.log(weather.location.country);
+	location.innerHTML = "<p>" + weather.location.name + "," + weather.location.region + "," + weather.location.country + "</p>" + "<br/>" + "<p>" + weather.current.temp_c + "</p>";
+
+	if (weather.current.cloud == 0) {
+		panel.style.backgroundImage = "url('http://cdn.wallpapersafari.com/53/58/iBLTOY.jpg')";
+		sky.innerHTML = "Clear Sky"
+	} else {
+		panel.style.backgroundImage = "url('https://i.ytimg.com/vi/61BLn00AN_w/maxresdefault.jpg')";
+		sky.innerHTML = "Clody Sky";
+	}
+
+	$(".switch").on("click", function() {
+		if (location.innerHTML = "<p>" + weather.current.temp_c + "</p>") {
+			location.innerHTML = "<p>" + weather.current.temp_f + "</p>"
+
+		} else if (location.innerHTML = "<p>" + weather.current.temp_f + "</p>") {
+			location.innerHTML = "<p>" + weather.current.temp_c + "</p>";
+		}
+	});
 
 });
 	}
 
-	navigator.geolocation.getCurrentPosition(success);
-
-/*$.getJSON(api, function(weather) {
-	console.log(weather.coord.lat);
-});*/
-	
+	navigator.geolocation.getCurrentPosition(success);	
 
 });
 
