@@ -17,7 +17,38 @@
   <button>Get Weather</button>
 </div>
 
-<script src="main.js"></script>
+<!--<script src="main.js"></script>-->
+
+<script>
+	
+	$(document).ready(function () {
+
+
+$("button").on("click", function() {
+
+	function success(position) {
+	var lat = position.coords.latitude;
+	var lon = position.coords.longitude;
+	var api = "https://api.apixu.com/v1/current.json?key=eac7ca1087144cc6b1c130638171606&q=" + lat + "," + lon;
+
+	$.getJSON(api, function(weather) {
+	console.log(weather);
+
+});
+	}
+
+	navigator.geolocation.getCurrentPosition(success);
+
+/*$.getJSON(api, function(weather) {
+	console.log(weather.coord.lat);
+});*/
+	
+
+});
+
+});
+
+</script>
 
 </body>
 </html>

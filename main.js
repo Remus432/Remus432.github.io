@@ -8,8 +8,11 @@ $("button").on("click", function() {
 $.getJSON("http://ip-api.com/json/?callback=?", function(data) {
 	/*var zip = data.zip;
 	var code = data.countryCode;*/
-	var lat = data.lat;
-	var lon = data.lon;
+	/*var lat = data.lat;
+	var lon = data.lon;*/
+	function success(position) {
+	var lat = position.coords.latitude;
+	var lon = position.coords.longitude;
 	/*var api = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "," + code + "&appid=d27525a5c89546287b4b541007f4042b";*/
 	var api = "http://api.apixu.com/v1/current.json?key=eac7ca1087144cc6b1c130638171606&q=" + lat + "," + lon;
 
@@ -22,8 +25,9 @@ $.getJSON("http://ip-api.com/json/?callback=?", function(data) {
 	console.log(data.country);*/
 	$.getJSON(api, function(weather) {
 	console.log(weather);
+
 });
-	
+	}
 });
 
 /*$.getJSON(api, function(weather) {
