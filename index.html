@@ -12,21 +12,31 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.css">
 </head>
 <body>
+
+	<div class="container">
+
 	<div id="panel">
   <h1>Local Weather</h1>
   <h2 id="sky"></h2>
 
   <i id="icon" class=""></i>
   
-  <div id="location">
+  <div>
+  	<p id="location"></p>
   </div>
 
 
   <i id="termo" class=""></i><p id="temp"></p>
 
-  <i id="hum"></i><p id="humi">
+  <div class="pick">
+
+  <!--<img id="img" src="" /><p id="humi"></p>-->
+
+  </div>
 
   
+
+</div>
 
 </div>
 
@@ -66,7 +76,7 @@
 
 	$("#termo").addClass("wi wi-thermometer");
 
-	$("#hum").addClass("wi wi-humidity");
+	document.getElementById("img").src = "https://cdn0.iconfinder.com/data/icons/wthr/32/692987-humidity-low-512.png";
 	$("#humi").html(humidity);
 
 	if (weather.current.cloud == 0) {
