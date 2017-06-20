@@ -18,12 +18,12 @@
   	<i style="color: black" class="wi-cloud"></i>
   </div>
 
-  <label class="switch">
-  <input type="checkbox">
-  <div class="slider round"></div>
-</label>
+  <p id="tempC"></p>
+  <p id="tempF"></p>
+
+  <button id="swap">Click me</button>
   
-  <button>Get Weather</button>
+  <button id="weather">Get Weather</button>
 </div>
 
 <!--<script src="main.js"></script>-->
@@ -33,10 +33,11 @@
 	$(document).ready(function () {
 
 
-$("button").on("click", function() {
+$("#weather").on("click", function() {
 
 	function success(position) {
 
+	var temp = document.getElementById("temp");
 	var sky = document.getElementById("sky");
 	var location = document.getElementById("location");
 	var panel = document.getElementById("panel");
@@ -45,28 +46,41 @@ $("button").on("click", function() {
 	var api = "https://api.apixu.com/v1/current.json?key=eac7ca1087144cc6b1c130638171606&q=" + lat + "," + lon;
 
 	$.getJSON(api, function(weather) {
+
+	var toggle = true;
+	var tempC = weather.current.temp_c;
+	var tempF = weather.current.temp_f;
+
 	console.log(weather);
 	console.log(weather.location.name);
 	console.log(weather.location.region);
 	console.log(weather.location.country);
-	location.innerHTML = "<p>" + weather.location.name + "," + weather.location.region + "," + weather.location.country + "</p>" + "<br/>" + "<p>" + weather.current.temp_c + "</p>";
+	location.innerHTML = "<p>" + weather.location.name + "," + weather.location.region + "," + weather.location.country + "</p>" + "<br/>" + "<p>";
+	/*document.getElementById("tempC").innerHTML = tempC;
+	document.getElementById("tempF").innerHTML = tempF;*/
 
 	if (weather.current.cloud == 0) {
 		panel.style.backgroundImage = "url('http://cdn.wallpapersafari.com/53/58/iBLTOY.jpg')";
 		sky.innerHTML = "Clear Sky"
 	} else {
 		panel.style.backgroundImage = "url('https://i.ytimg.com/vi/61BLn00AN_w/maxresdefault.jpg')";
-		sky.innerHTML = "Clody Sky";
+		sky.innerHTML = "Cloudy Sky";
 	}
 
-	$(".switch").on("click", function() {
-		if (location.innerHTML = "<p>" + weather.current.temp_c + "</p>") {
-			location.innerHTML = "<p>" + weather.current.temp_f + "</p>"
+	$("#swap").on("click", function() {
+		if (toggle == true) {
+			toggle = false;
+			$("#tempC").html(tempC);
+		} 
 
-		} else if (location.innerHTML = "<p>" + weather.current.temp_f + "</p>") {
-			location.innerHTML = "<p>" + weather.current.temp_c + "</p>";
+		else if (toggle == false) {
+			toggle = true;
+			$("#tempC").html(tempF);
 		}
-	});
+	})
+		
+
+	
 
 });
 	}
