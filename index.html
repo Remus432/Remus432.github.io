@@ -3,6 +3,8 @@
 <head>
 	<title>Local Weather App</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
 	<script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -13,17 +15,19 @@
 	<div id="panel">
   <h1>Local Weather</h1>
   <h2 id="sky"></h2>
+
+  <i id="icon" class=""></i>
   
   <div id="location">
-  	<i style="color: black" class="wi-cloud"></i>
   </div>
 
-  <p id="tempC"></p>
-  <p id="tempF"></p>
 
-  <button id="swap">Click me</button>
+  <i id="termo" class=""></i><p id="temp"></p>
+
+  <i id="hum"></i><p id="humi">
+
   
-  <button id="weather">Get Weather</button>
+
 </div>
 
 <!--<script src="main.js"></script>-->
@@ -33,7 +37,7 @@
 	$(document).ready(function () {
 
 
-$("#weather").on("click", function() {
+//$("#weather").on("click", function() {//
 
 	function success(position) {
 
@@ -50,32 +54,39 @@ $("#weather").on("click", function() {
 	var toggle = true;
 	var tempC = weather.current.temp_c;
 	var tempF = weather.current.temp_f;
+	var humidity = weather.current.humidity;
 
 	console.log(weather);
 	console.log(weather.location.name);
 	console.log(weather.location.region);
 	console.log(weather.location.country);
-	location.innerHTML = "<p>" + weather.location.name + "," + weather.location.region + "," + weather.location.country + "</p>" + "<br/>" + "<p>";
-	/*document.getElementById("tempC").innerHTML = tempC;
-	document.getElementById("tempF").innerHTML = tempF;*/
+	location.innerHTML = "<p>" + weather.location.name + "," + weather.location.region + "," + weather.location.country + "</p>" + "<br/>";
+	document.getElementById("temp").innerHTML = tempC + "&deg;C";
+	//document.getElementById("tempF").innerHTML = tempF;//
+
+	$("#termo").addClass("wi wi-thermometer");
+
+	$("#hum").addClass("wi wi-humidity");
+	$("#humi").html(humidity);
 
 	if (weather.current.cloud == 0) {
-		panel.style.backgroundImage = "url('http://cdn.wallpapersafari.com/53/58/iBLTOY.jpg')";
+		$("#icon").addClass("wi wi-day-sunny");
 		sky.innerHTML = "Clear Sky"
-	} else {
-		panel.style.backgroundImage = "url('https://i.ytimg.com/vi/61BLn00AN_w/maxresdefault.jpg')";
+	}
+	 else {
+	 	$("#icon").addClass("wi wi-day-cloudy");
 		sky.innerHTML = "Cloudy Sky";
 	}
 
-	$("#swap").on("click", function() {
+	$("#temp").on("click", function() {
 		if (toggle == true) {
 			toggle = false;
-			$("#tempC").html(tempC);
+			$("#temp").html(tempC + "&deg;C");
 		} 
 
 		else if (toggle == false) {
 			toggle = true;
-			$("#tempC").html(tempF);
+			$("#temp").html(tempF + "&deg;F");
 		}
 	})
 		
@@ -89,7 +100,7 @@ $("#weather").on("click", function() {
 
 });
 
-});
+//});//
 
 </script>
 
