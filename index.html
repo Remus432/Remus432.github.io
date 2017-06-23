@@ -1,118 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Local Weather App</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
-	<script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.css">
+	<title>Wikipedia Viewer</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+	<style type="text/css">
+		
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.wrap {
+		display: block;
+		margin: auto;
+		width: 1000px;
+		margin-top: 20px;
+	}
+
+	input {
+		width: 600px;
+		display: inline;
+		margin: auto;
+		border: 2px solid cyan;
+	}
+
+	button {
+		display: inline;
+		border: none;
+		background-color: darkblue;
+		color: white;
+		font-size: 30px;
+		padding: 5px;
+	}
+
+	button:nth-child(4) {
+		margin-right: 40px;
+	}
+
+	#show {
+		margin-top: 30px!important;
+	}
+
+	#show .container {
+		background-color: lightblue;
+		margin-top: 30px;
+	}
+
+	#show h1 {
+		color: white;
+		margin: 20px;
+	}
+
+	#show p {
+		margin-left: 40px;
+		font-size: 20px;
+		color: grey;
+	}
+
+	#show .container h2 {
+		text-align: center !important;
+		font-weight: bold;
+		font-size: 25px;
+		margin-top: -10px;
+	}
+
+	
+
+	</style>
+
 </head>
 <body>
 
 	<div class="container">
 
-	<div id="panel">
-  <h1>Local Weather</h1>
-  <h2 id="sky"></h2>
+	<h1 style="text-align: center;margin-bottom: 40px">Wikipedia Viewer</h1>
 
-  <i id="icon" class=""></i>
-  
-  <div>
-  	<p id="location"></p>
-  </div>
+	<div class="input-field">
+	<input class="active" type="text" name="search"/>	
+	<label for="search">Search...</label>
+	</div>
 
+	<button class="right teal lighten-2" id="search">Search</button>
+	<button class="right teal lighten-2" id="random"><a id="randURL" style="text-decoration:none;color:white;" target="_blank">Random</a></button>
 
-  <i id="termo" class=""></i><p id="temp"></p>
+	</div>
 
-  <div class="pick">
-
-  <!--<img id="img" src="" /><p id="humi"></p>-->
-
-  </div>
-
-  
-
-</div>
-
-</div>
-
-<!--<script src="main.js"></script>-->
-
-<script>
-	
-	$(document).ready(function () {
-
-
-//$("#weather").on("click", function() {//
-
-	function success(position) {
-
-	var temp = document.getElementById("temp");
-	var sky = document.getElementById("sky");
-	var location = document.getElementById("location");
-	var panel = document.getElementById("panel");
-	var lat = position.coords.latitude;
-	var lon = position.coords.longitude;
-	var api = "https://api.apixu.com/v1/current.json?key=eac7ca1087144cc6b1c130638171606&q=" + lat + "," + lon;
-
-	$.getJSON(api, function(weather) {
-
-	var toggle = true;
-	var tempC = weather.current.temp_c;
-	var tempF = weather.current.temp_f;
-	var humidity = weather.current.humidity;
-
-	console.log(weather);
-	console.log(weather.location.name);
-	console.log(weather.location.region);
-	console.log(weather.location.country);
-	location.innerHTML = "<p>" + weather.location.name + "," + weather.location.region + "," + weather.location.country + "</p>" + "<br/>";
-	document.getElementById("temp").innerHTML = tempC + "&deg;C";
-	//document.getElementById("tempF").innerHTML = tempF;//
-
-	$("#termo").addClass("wi wi-thermometer");
-
-	//document.getElementById("img").src = "https://cdn0.iconfinder.com/data/icons/wthr/32/692987-humidity-low-512.png";//
-	$("#humi").html(humidity);
-
-	if (weather.current.cloud == 0) {
-		$("#icon").addClass("wi wi-day-sunny");
-		sky.innerHTML = "Clear Sky"
-	}
-	 else {
-	 	$("#icon").addClass("wi wi-day-cloudy");
-		sky.innerHTML = "Cloudy Sky";
-	}
-
-	$("#temp").on("click", function() {
-		if (toggle == true) {
-			toggle = false;
-			$("#temp").html(tempC + "&deg;C");
-		} 
-
-		else if (toggle == false) {
-			toggle = true;
-			$("#temp").html(tempF + "&deg;F");
-		}
-	})
+	<div class="" id="show"></div>
 		
+	</div>
 
-	
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
 
-});
-	}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+          
 
-	navigator.geolocation.getCurrentPosition(success);	
+  <script type="text/javascript">
 
-});
+  //Click function -- AJAX Request
+  	
+  $("#search").on("click", function() {
+  	var term = $("input").val();
+  	var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + term + "&format=json&callback=?";
 
-//});//
+  	//AJAX Request
 
-</script>
+  	$.ajax({
+  		url: url,
+  		type: 'GET',
+  		contentType: 'application/json; charset=utf-8',
+  		async: false,
+  		dataType: "json",
+  		success: function(data, status, jqXHR) {
+  			console.log(data);
+  			$("#show").html("");
+  			//For Loop
+
+  			for (var i= 0; i < data[1].length; i++) {
+  				
+  				$("#show").prepend("<div class='container'>" + "<h1>" + data[1][i] + "</h1>" + "<p>" + data[2][i] + "</p>" + "<h2><a class='center-align' href=" + data[3][i] + " target='_blank'>" + data[3][i] + "</a></h2>" + "</div");
+  			}
+  		}
+  	})
+
+  });
+
+  $("#random").click(function() {
+  	var randURL = "https://en.wikipedia.org/wiki/Special:Random";
+  	var randBTN = document.getElementById("randURL");
+  	randBTN.setAttribute('href', randURL);
+  });
+
+  </script>
 
 </body>
 </html>
