@@ -1,141 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Wikipedia Viewer</title>
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-
-	<style type="text/css">
-		
-	body {
-		margin: 0;
-		padding: 0;
-	}
-
-	.wrap {
-		display: block;
-		margin: auto;
-		width: 1000px;
-		margin-top: 20px;
-	}
-
-	input {
-		width: 600px;
-		display: inline;
-		margin: auto;
-		border: 2px solid cyan;
-	}
-
-	button {
-		display: inline;
-		border: none;
-		background-color: darkblue;
-		color: white;
-		font-size: 30px;
-		padding: 5px;
-	}
-
-	button:nth-child(4) {
-		margin-right: 40px;
-	}
-
-	#show {
-		margin-top: 30px!important;
-	}
-
-	#show .container {
-		background-color: lightblue;
-		margin-top: 30px;
-	}
-
-	#show h1 {
-		color: white;
-		margin: 20px;
-	}
-
-	#show p {
-		margin-left: 40px;
-		font-size: 20px;
-		color: grey;
-	}
-
-	#show .container h2 {
-		text-align: center !important;
-		font-weight: bold;
-		font-size: 25px;
-		margin-top: -10px;
-	}
-
-	
-
-	</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Twich API</title>
 </head>
 <body>
 
-	<div class="container">
-
-	<h1 style="text-align: center;margin-bottom: 40px">Wikipedia Viewer</h1>
-
-	<div class="input-field">
-	<input class="active" type="text" name="search"/>	
-	<label for="search">Search...</label>
-	</div>
-
-	<button class="right teal lighten-2" id="search">Search</button>
-	<button class="right teal lighten-2" id="random"><a id="randURL" style="text-decoration:none;color:white;" target="_blank">Random</a></button>
-
-	</div>
-
-	<div class="" id="show"></div>
-		
-	</div>
-
-	<script
+  <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-          
+  <script>
+    var url = "https://wind-bow.gomix.me/twitch-api/streams";
 
-  <script type="text/javascript">
-
-  //Click function -- AJAX Request
-  	
-  $("#search").on("click", function() {
-  	var term = $("input").val();
-  	var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + term + "&format=json&callback=?";
-
-  	//AJAX Request
-
-  	$.ajax({
-  		url: url,
-  		type: 'GET',
-  		contentType: 'application/json; charset=utf-8',
-  		async: false,
-  		dataType: "json",
-  		success: function(data, status, jqXHR) {
-  			console.log(data);
-  			$("#show").html("");
-  			//For Loop
-
-  			for (var i= 0; i < data[1].length; i++) {
-  				
-  				$("#show").prepend("<div class='container'>" + "<h1>" + data[1][i] + "</h1>" + "<p>" + data[2][i] + "</p>" + "<h2><a class='center-align' href=" + data[3][i] + " target='_blank'>" + data[3][i] + "</a></h2>" + "</div");
-  			}
-  		}
-  	})
-
-  });
-
-  $("#random").click(function() {
-  	var randURL = "https://en.wikipedia.org/wiki/Special:Random";
-  	var randBTN = document.getElementById("randURL");
-  	randBTN.setAttribute('href', randURL);
-  });
-
+    $.getJSON(url, function(data) {
+      console.log(data);
+    });
   </script>
-
 </body>
 </html>
