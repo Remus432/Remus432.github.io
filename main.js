@@ -13,7 +13,7 @@ $(document).ready(function() {
           $(".image").fadeOut();
         })
 
-      var streamers = ["ogn_lol", "lck1", "c9sneaky", "aimbotcalvin"];
+      var streamers = ["nightblue3", "imaqtpie", "c9sneaky", "aimbotcalvin"];
 
 
 
