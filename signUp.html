@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <title>Signed Up</title>
+</head>
+<body>
+    
+        <div class="row">
+                <form style="height:600px">
+                  <h1 class="center-align">Movie<span>NOW</span></h1>
+                  
+                  <div class="row">
+                    <div class="input-field">
+                      <input id="firstName" type="text" class="validate" required>
+                      <label for="firstName">First Name</label>
+                    </div>
+                    <div class="row">
+                    <div class="input-field">
+                      <input id="lastName" type="text" class="validate" required>
+                      <label for="lastName">Last Name</label>
+                    </div>
+                  <div class="row">
+                    <div class="input-field">
+                      <input id="email" type="email" class="validate" required>
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field">
+                      <input id="password" type="password" class="validate" required>
+                      <label for="password">Password</label>
+                    </div>
+                  </div>
+    
+                 
+                  <p style="margin-left: 20px">
+                    <input type="checkbox" class="filled-in" id="filled-in-box"/>
+                    <label style="color:#fff" for="filled-in-box">Remmember Me</label>
+                  </p>
+    
+    
+                <div class="buttons center-align">
+                    <button id="signUp">Sign Up</button>
+                </div>
+    
+                </form>
+              </div>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+             var config = {
+            apiKey: "AIzaSyA8y94LqspHnDrSs0G0IZEltIdesRw5bE4",
+            authDomain: "semistack.firebaseapp.com",
+            databaseURL: "https://semistack.firebaseio.com",
+            projectId: "semistack",
+            storageBucket: "semistack.appspot.com",
+            messagingSenderId: "653222743377"
+        };
+        firebase.initializeApp(config);
+
+            var auth = firebase.auth(),
+        database = firebase.database();
+
+        $("#signUp").on("click", function(e) {
+        e.preventDefault();
+        
+        var email = $("#email").val().trim(),
+            password = $("#password").val().trim(),
+            firstName = $("#firstName").val().trim(),
+            lastName = $("#lastName").val().trim();
+
+            auth.createUserWithEmailAndPassword(email, password)
+              .then(function (newUser) {
+                var user = {
+                  firstName: firstName,
+                  lastName: lastName,
+                  email: email,
+                  password: password,
+                  id: newUser.uid
+                }
+
+                var ref = database.ref('users/' + newUser.uid); // refering to the database
+
+                ref.set(user); // save the data into the database*/
+
+                var currentUser = firebase.auth().currentUser;
+
+                currentUser.sendEmailVerification().then(function() {
+                    
+                 location.href = "success.html";
+
+                }).catch(function(error) {
+
+                // An error happened.
+                });
+
+                
+
+              }).catch(function (err) {
+                console.log(err);
+                console.log("Nooo, somethint went wrong");
+              }) 
+          
+      })
+
+        })
+         
+    </script>
+</body>
+</html>
