@@ -5,14 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Signed In</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
             
+    <style>
+      #element {
+        display: block;
+        margin: auto;
+        width: 70%;
+        text-align: center;
+      }
+
+      #element img {
+        width: 250px;
+        height: 300px;
+        margin: 20px;
+      }
+
+      nav {
+        background-color: #1c1d1e;
+      }
+
+      nav a {
+        margin-left: 50px;
+      }
+
+      nav input {
+        position: relative;
+        right: 50px;
+      }
+
+      nav button {
+        transform: scale(0.7);
+        color: #fff;
+        border: none;
+        background-color: transparent;
+        font-size: 20px;
+        
+      }
+
+    </style>
+
 </head>
 <body>
-    <h1>Signed In</h1>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">Movie<span>Now</span></a>
+              <ul id="nav-mobile" class="right">
+                <input style="margin-left: -100px" type="text" placeholder="Search Movie">
+                <button>Sign Out</button>
+              </ul>
+            </div>
+          </nav>        
+    </header>
 
-    <button>Sign Out</button>
+    <aside>
+      <div id="element"></div>
+    </aside>
+
+    
 
     <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script
@@ -23,6 +76,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script>
         $(document).ready(function() {
+
+
             // Initialize Firebase
     var config = {
         apiKey: "AIzaSyA8y94LqspHnDrSs0G0IZEltIdesRw5bE4",
@@ -54,7 +109,64 @@
           })
 
       });
-        })
+
+      
+
+      $("input").on("keypress", (e) => {
+        
+        var movieData = $("input").val().trim();
+        var element = document.getElementById("element");
+        var fullURL = "https://api.themoviedb.org/3/search/movie?api_key=2015bad48afec319b116488447972b4c&query=" + movieData;
+        
+        if (e.keyCode === 13) {
+         //Create function for each request
+          $.ajax({
+            dataType: "json",
+            url: fullURL,
+            async: true,
+            success: function(data) {
+              console.log(data);
+
+
+              var image, imageURL, dataImage;
+
+
+              var dataResults = data.results;
+
+              for (var i = 0; i < data.results.length; i++) {
+
+                dataImage = data.results[i].poster_path;
+                imageURL = "https://image.tmdb.org/t/p/w500" + dataImage;
+
+                $("img").on("click", () => {
+                  location.href = "movie.html";
+                  $(this).html(`
+                    <div>
+                      <p>${dataResults.overview}</p>
+                      </div>
+                  `);
+                })
+
+               working();
+               /* document.body.appendChild(image)
+                image.src = imageURL;  */ 
+
+                
+
+              }
+
+              function working() {
+                image = new Image();
+                image.src = imageURL; 
+                $("#element").append(image);
+              }
+
+
+            }
+          });
+        }
+      })
+    })
         
     </script>
 </body>

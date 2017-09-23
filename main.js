@@ -24,12 +24,6 @@ $(document).ready(function() {
 
       var allInput = document.querySelectorAll("input");
 
-      $("input").on("keypress", (e) => {
-          if (e.keyCode === 13) {
-              e.preventDefault();
-              console.log(e);
-          }
-      })
 
 
       $("#signUp").on("click", function(e) {
@@ -57,6 +51,22 @@ $(document).ready(function() {
                 console.log("Nooo, somethint went wrong");
               }) */
           
+      })
+
+      $("#signIn").on("keypress", function(e) {
+          if (e.keyCode === 13) {
+            var email = $("#email").val().trim(),
+            password = $("#password").val().trim();
+        
+        console.log(email, password);
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(function (user) {
+              console.log(user);
+
+              location.href = "signIn.html";
+            })
+          }
       })
 
       $("#signIn").on("click", function(e) {
