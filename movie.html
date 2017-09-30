@@ -7,6 +7,63 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="movie">
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
+  <script src="secondMain.js"></script>
+    <script>
+        window.getMovie = function() {
+                var movieName = sessionStorage.getItem("movieId");
+
     
+               $.ajax({
+                dataType: "json",
+                url: "https://api.themoviedb.org/3/movie/" + movieName + "?api_key=2015bad48afec319b116488447972b4c",
+                async: true,
+                success: function(data) {
+                  console.log(data);
+    
+                
+
+    
+                  var dataResults = data;
+    
+                  var output = `
+                    
+                        <p>${data.original_title}</p>
+                        <p>${data.overview}</p>
+                        <img src="https://image.tmdb.org/t/p/w500${data.poster_path}" />
+                        <a href="signIn.html">Get Back</a>
+                      
+                  `
+
+                  console.log(dataResults.original_title)
+                  console.log(dataResults.original_title)
+    
+                  $("#movie").html(output);
+    
+    
+      
+    
+                }
+              });
+
+              
+    
+    
+    
+              }
+
+              getMovie();
+    </script>
 </body>
 </html>
