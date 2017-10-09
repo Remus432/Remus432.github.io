@@ -4,18 +4,13 @@ body {
 }
 
 form {
-    display: block;
-    margin: auto;
-    width: 50%;
+    width: 70%;
     position: relative;
-    top: 50px;
+    margin: auto;
     background-color: #2877A0;
     height: 450px;
 }
 
-form .row {
-    padding: 0px 20px;
-}
 
 form h1 {
     background-color: #1D1C1E;
@@ -42,28 +37,6 @@ form #checkbox {
 .buttons button {
     background-color: #364156;
     padding: 10px 20px;
-    margin-top: 20px;
-    margin-left: 30px;
-    border: none;
-    border-radius: 8px;
     font-size: 30px;
     color: #fff;
 }
-
-/* label color */
-.input-field label {
-    color: #1d1c1e;
-  }
-
-/* label focus color */
-.input-field input:focus + label {
-    color: #1d1c1e !important;
-  }
-  /* label focus color */
- form .input-field input:focus {
-    color: #1d1c1e;
-  }
-  .input-field input:focus {
-    border-bottom: 2px solid #1d1c1e !important;
-    box-shadow: 5px 2px 0 0 #000;
-  }

@@ -32,7 +32,18 @@ $(document).ready(function() {
               })
     
           });
-    
+      
+          
+          $("input").focus(() => {
+            $("input").animate({
+              width: "300px"
+            }, 1000)
+          })
+          .blur(() => {
+            $("input").animate({
+              width: "200px"
+            }, 1000)
+          });
           
     
           $("input").on("keypress", (e) => {
@@ -41,7 +52,7 @@ $(document).ready(function() {
             var element = document.getElementById("element");
             var fullURL = "https://api.themoviedb.org/3/search/movie?api_key=2015bad48afec319b116488447972b4c&query=" + movieData;
             
-            if (e.keyCode === 13) {
+            
              //Create function for each request
               $.ajax({
                 dataType: "json",
@@ -56,34 +67,25 @@ $(document).ready(function() {
                   output = "";
                   var dataResults = data.results;
     
-                 /* for (var i = 0; i < data.results.length; i++) {
-    
-                    dataImage = data.results[i].poster_path;
-                    imageURL = "https://image.tmdb.org/t/p/w500" + dataImage;
-    
-                    
-    
-                   working();
-                   /* document.body.appendChild(image)
-                    image.src = imageURL;  */ 
-    
-                    
-    
-                  //}
     
                 
     
                   $.each(dataResults, (index, movie) => {
                     output += `
-                      <div class="row">
-                        <p>${movie.original_title}</p>
+                      
+                       <div id="alignData" class="col-md-5 col-sm-6 align-self-center">
+                       <div class="well">
                         <img onclick="movieSelect('${movie.id}')" src="https://image.tmdb.org/t/p/w500${movie.poster_path}"/>
-                        
+                        <div class="text-center">
+                        <p>${movie.original_title}</p>
+                        </div>
                       </div>
+                        </div>
+                      
                     `;
                   });
     
-                  $("#element").html(output);
+                  $("#data").html(output);
     
                   function working() {
                     image = new Image();
@@ -147,6 +149,6 @@ $(document).ready(function() {
               
 
     
-            }
+            
           })
         })

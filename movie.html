@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-</head>
-<body>
-    <div id="movie">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="styles.css"/>-->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
+      img {
+        width: 45%;
+      }
+
+      #movie {
+        overflow: hidden;
+      }
+
+    </style>
+</head>
+<body class="bg-dark">
+
+      <div id="movie">
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
@@ -38,12 +56,18 @@
                   var dataResults = data;
     
                   var output = `
-                    
-                        <p>${data.original_title}</p>
-                        <p>${data.overview}</p>
-                        <img src="https://image.tmdb.org/t/p/w500${data.poster_path}" />
-                        <a href="signIn.html">Get Back</a>
                       
+                        <div class="row">
+                        <div class="col-6 col-md-6 col-sm-12">                      
+                        <img class="img-fluid rounded mx-auto d-block" src="https://image.tmdb.org/t/p/w500${data.poster_path}" />
+                        <p class="text-center text-light">${data.original_title}</p>
+                        </div>
+                        <div  class="col-6 col-md-4">             
+                        <p class="text-light mt-5">${data.overview}</p>
+                        <a class="btn btn-primary" href="signIn.html">Get Back</a>
+                        <a class="btn btn-primary" href="http://www.imdb.com/title/${data.imdb_id}/?ref_=nv_sr_1" target="_blank">IMBD Details</a>
+                      </div>
+                      </div>
                   `
 
                   console.log(dataResults.original_title)
