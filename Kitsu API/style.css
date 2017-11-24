@@ -44,7 +44,7 @@ header .nav-wrap {
 
 .search {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   flex-direction: row;
   width: 100%;
 }
@@ -101,6 +101,38 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9997;
+}
+
+@media (max-width: 700px) {
+  header nav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 90px;
+    z-index: 9999;
+  }
+  header .nav-wrap {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 100vw;
+  }
+  .logo {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100vw;
+  }
+  .search {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+  }
+  .search input {
+    text-align: center;
+    font-size: 25px;
+  }
 }
 
 .shrink {
