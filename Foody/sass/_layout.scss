@@ -1,0 +1,87 @@
+.header {
+    @include flexCenterAround(center, space-around);
+}
+
+
+main {
+    background-image: linear-gradient(to right top, rgba(0, 0, 0, .2), rgba(0, 0, 0, .7)), url("../img/bg-1.jpg");
+    background-size: cover;
+    background-position: top center;
+
+    height: 75vh;
+    position: relative;
+}
+
+
+.discover {
+    @include flexCenterAround(center, flex-start);
+
+    width: 99vw;
+    padding: 8rem 4rem;
+    background-image: linear-gradient(to right , #fff 50%, transparent 50%), url(../img/bg-3.jpg);
+    background-position:  -50% 30%;
+    background-size: cover;
+    color: var(--color-dark-2);
+
+    @include respond(phone) {
+        background-image: linear-gradient(to right , #fff 50%), url(../img/bg-3.jpg);
+    }
+}
+
+
+.menu {
+    padding-bottom: 5rem;
+}
+
+.dish {
+    padding: 5rem;
+}
+
+.reservation {
+    @include flexCenterAround(center, center);
+
+    flex-direction: column;
+
+  
+    height: 60vh;
+    margin: 5rem 0;
+    
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url(../img/meat.jpg);
+    background-size: cover;
+    background-position: center;
+
+
+}
+
+.team {
+    padding: 5rem 0;
+
+    @include respond(tab-port) {
+        padding: 3rem 0;
+    }
+}
+
+.newsletter {
+    height: 40vh;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .7)), url("../img/bg-1.jpg");
+    background-size: cover;
+    background-position: top center;
+}
+
+
+.contact {
+    height: 70vh;
+    background-image: linear-gradient(180deg, var(--color-light-3) 60%, var(--color-grey-3) 60%);
+
+    @include respond(tab-land) {
+        height: 80vh;
+    }
+}
+
+
+.footer {
+    width: 99vw;
+    background-color: var(--color-grey-3);
+    text-align: center;
+    color: var(--color-light-1);
+}

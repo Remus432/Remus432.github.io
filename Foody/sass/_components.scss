@@ -1,0 +1,831 @@
+/////////////////////////////////////
+///////// HEADER
+
+.header {
+    color: var(--color-light-1);
+
+    &__logo {
+        font-size: 2rem;
+        color: currentColor;
+
+        @include respond(phone) {
+            font-size: 1rem;
+            justify-self: flex-start;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+
+        padding: 2rem;
+        width: 35%;
+
+        @include respond(tab-land) {
+            padding: 2rem;
+            width: 60%;
+            display: none;
+        }
+
+        @include respond(tab-port) {
+            width: 70%;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+
+        &--item {
+            list-style: none;
+        }
+        
+        &--item > a {
+            color: var(--color-light-1);
+            font-size: 1rem;
+            transition: all 1s ease;
+
+            &:hover {
+ 
+
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    
+        height: 5rem;
+        cursor: pointer;
+
+        @include respond(tab-land) {
+            display: flex;
+        }
+
+        &--line {
+            height: .2rem;
+            width: 2rem;
+            margin: .2rem 0;
+            background-color: #fff;
+            transition: .5s all ease;
+        }
+
+    }
+
+    &__check {
+        
+
+        &:checked ~ .header__menu--line-1 {
+            transform: rotate(60deg);
+        }
+
+        &:check ~ .header__menu--line-2 {
+            opacity: 0;
+        }
+
+        &:checked ~ .header__menu--line-3 {
+            transform: rotate(-60deg);
+        }
+    }
+
+
+    ////// HAMBURGER
+    &__hamburger {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: orangered;
+        z-index: -1;
+    }
+}
+
+
+
+/////////////////////////////////////
+///////// CALL TO ACTION
+
+.cta {
+    @include flexCenterAround(center, space-around);
+    @include centerXY(50%, 55%);
+    
+    color: var(--color-light-1);
+    flex-direction: column;
+    height: 40%;
+
+    &__heading {
+        @include fontSW(6rem, 700);
+        @include textSpacing(2px, 5px);
+
+        color: currentColor;
+        text-align: center;
+        
+
+        @include respond(tab-land) {
+            @include fontSW(3rem, 700);
+            @include textSpacing(1px, 2.5px);
+        }
+
+        @include respond(tab-port) {
+            @include fontSW(2rem, 700);
+            @include textSpacing(1px, 2.5px);
+        }
+
+        @include respond(phone) {
+            @include fontSW(1.5rem, 700);
+            width: 500px;
+            margin: auto;
+            
+        }
+
+        @include respond(big-desktop) {
+            @include fontSW(4rem, 700);
+        }
+    }
+
+    &__paragraph {
+        @include fontSW(1rem, 400);
+        @include textSpacing(1.5px, 1px);
+
+        text-align: center;
+        line-height: 1.6;
+        color: currentColor;
+
+        width: 70%;
+        margin: auto;
+
+        @include respond(tab-land) {
+            @include fontSW(.8rem, 400);
+            @include textSpacing(.5px, 1.5px);
+        }
+
+        @include respond(tab-port) {
+            @include fontSW(.6rem, 700);
+            @include textSpacing(1px, 2.5px);
+        }
+    }
+
+    &__btn--lg {
+        background-color: var(--color-primary);
+        color: currentColor;
+
+        border: none;
+        padding: 1rem 3rem;
+    }
+}
+
+
+
+/////////////////////////////////////
+///////// BUTTON
+
+.btn {
+    cursor: pointer;
+    transition: 1s all ease;
+
+    &:hover {
+        color: var(--color-primary);
+        background-color: var(--color-light-1);
+    }
+}
+
+
+
+/////////////////////////////////////
+///////// DISCOVER
+
+.discover {
+    &__container {
+        @include flexCenterAround(flex-start, space-between);
+        flex-direction: column;
+
+        height: 18rem;
+        
+
+        @include respond(tab-land) {
+            height: 15rem;
+        }
+
+        @include respond(tab-port) {
+            height: 20rem;
+        }
+
+        @include respond(phone) {
+            height: 25rem;
+            align-items: center;
+        }
+    }
+
+    &__heading--1 {
+        @include fontSW(3rem, 700);
+        color: currentColor;
+    }
+
+    &__heading--2 {
+        @include fontSW(1rem, 400);
+    }
+
+    &__paragraph {
+        @include fontSW(1rem, 300);
+        @include textSpacing(1px, 1px);
+
+        color: var(--color-grey-2);
+        line-height: 1.7;
+
+        width: 50%;
+
+        @include respond(tab-land) {
+            width: 50%;
+        }
+
+        @include respond(tab-port) {
+            width: 40%;
+        }
+
+        @include respond(phone) {
+            width: 70%;
+        }
+    }
+
+    &__food {
+        
+
+    }
+
+    ///////// USER /////////
+    &__user {
+        @include flexCenterAround(center, space-between);
+        width: 12rem;
+
+        &--profile {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 100px;
+        }
+
+        &--text {
+            @include flexCenterAround(center, space-between);
+            flex-direction: column;
+            height: 2.5rem;
+        }
+
+        &--role {
+            @include fontSW(.6rem, 700);
+            color: var(--color-secondary);
+        }
+    }
+}
+
+
+
+
+/////////////////////////////////////
+///////// MENU
+
+.menu {
+
+    &__container {
+        @include flexCenterAround(center, center);
+
+        width: 100%;
+        background-color: var(--color-light-3);
+    }
+
+    &__options {
+        @include flexCenterAround(center, space-around);
+
+        width: 50%;
+        padding: 1.5rem;
+
+        @include respond(tab-port) {
+            width: 90%;
+        }
+
+        @include respond(phone) {
+            width: 150%;
+        }
+
+        & li {
+            list-style: none;
+            position: relative;
+
+            & a {
+                @include fontSW(.8rem, 400);
+
+                color: var(--color-dark-2);
+
+                @include respond(tab-port) {
+                    @include fontSW(.4rem, 400);
+                }
+   
+                &:hover {
+                    color: orangered;
+                }
+            }
+            
+        }
+    }
+
+    &__thumbnail {
+        display: flex;
+
+        @include respond(phone) {
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+
+        }
+
+        & > div {
+            width: 33.3%;
+            height: 400px;
+            background-color: black;
+
+            @include respond(tab-port) {
+                height: 300px;
+            }
+
+            @include respond(phone) {
+                width: 100%;
+            }
+        }
+
+        & > div:not(:last-of-type) {
+            margin-right: 1rem;
+
+            @include respond(phone) {
+                margin-right: 0;
+
+                & {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+/////////////////////////////////////
+///////// DISH
+
+.dish {
+
+    &__heading {
+        @include fontSW(3.5rem, 800);
+        text-align: center;
+
+        @include respond(phone) {
+            @include fontSW(2rem, 800);
+        }
+    }
+
+    &__container {
+        @include flexCenterAround(center, space-around);
+    }
+
+    &__options {
+        @include flexCenterAround(center, space-around);
+        flex-direction: row;
+        position: relative;
+
+        padding-top: 2.5rem;
+        padding-bottom: .8rem;
+        width: 25%;
+
+        @include respond(tab-land) {
+            width: 30%;
+        }
+
+        @include respond(tab-port) {
+            width: 55%;
+        }
+
+        @include respond(phone) {
+            & li:not(:last-of-type) {
+                margin-right: 2rem;
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            bottom: 13%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 89%;
+            height: 5px;
+            background-color: var(--color-light-3);
+        }
+
+        & li {
+            @include fontSW(1rem, 400);
+            list-style: none;
+            border-bottom: 3px solid var(--color-tertiary);
+            padding-bottom: 1rem;
+        }
+    }
+
+    ///////// DISH ITEMS /////////
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        grid-gap: 2rem;
+        justify-items: center;
+        margin-top: 4rem;
+
+        @include respond(tab-land) {
+            justify-content: center;
+            grid-template-columns: repeat(1, 2fr);
+        }
+    }
+
+    &__item {
+        display: flex;
+
+        box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.1);
+        width: 500px;
+
+        @include respond(phone) {
+            width: 300px;
+        }
+
+        &--img {
+            width: 25%;
+            background-image: url("../img/bg-1.jpg");
+            background-size: cover;
+            background-position: center center;
+
+            @include respond(phone) {
+                width: 35%;
+            }
+        }
+
+        &--description {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            padding: 2rem;
+
+            @include respond(phone) {
+                width: 100%;
+            }
+        }
+
+        &--product {
+            @include flexCenterAround(flex-start, space-around);
+            flex-direction: column;
+
+            height: 4rem;
+
+            &--name {
+                @include fontSW(1.5rem, 600);
+                text-transform: uppercase;
+                color: var(--color-tertiary);
+
+                @include respond(phone) {
+                    @include fontSW(.7rem, 600);
+                }
+            }
+
+            &--recipe {
+                @include fontSW(.8rem, 300);
+            }
+        }
+
+        &--price {
+            @include fontSW(1rem, 400);
+            color: var(--color-tertiary);
+        }
+    }
+}
+
+
+/////////////////////////////////////
+///////// RESERVATION
+
+.reservation {
+
+    &__heading {
+        @include fontSW(2.5rem, 400);
+
+        color: var(--color-light-1);
+        margin-bottom: 8rem;
+
+        @include respond(tab-port) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__table {
+        display: flex;
+        align-items: center;
+
+        @include respond(tab-port) {
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 20rem;
+        }
+    }
+
+    &__input {
+        margin-right: 1rem;
+        padding: .7rem 1rem;
+        border: none;
+        color: var(--color-grey-2);
+
+        @include respond(tab-port) {
+            padding: .5rem .8rem;
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+
+    &__button {
+        @include fontSW(1rem, 400);
+
+        color: var(--color-light-1);
+        background-color: var(--color-tertiary);
+
+        padding: .55rem 2rem;
+        border: none;
+        
+        cursor: pointer;
+        align-self: stretch;
+
+        
+    }
+}
+
+
+
+/////////////////////////////////////
+///////// TEAM
+
+.team {
+
+    &__heading {
+        @include fontSW(2rem, 700);
+
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 5rem;
+
+        @include respond(tab-port) {
+            margin-bottom: 2.5rem;
+        }
+    }
+
+    &__container {
+        @include flexCenterAround(center, space-between);
+        width: 60%;
+        margin: auto;
+
+        @include respond(tab-port) {
+            width: 80%;
+        }
+
+        @include respond(phone) {
+            flex-direction: column;
+        }
+    }
+
+    &__member {
+        @include flexCenterAround(center, space-around);
+        flex-direction: column;
+
+        width: 300px;
+
+
+        &--data {
+            @include flexCenterAround(center, space-around);
+            flex-direction: column;
+            margin: 1rem 0;
+
+            &-img {
+                width: 90%;
+                margin-bottom: 1rem;
+            }
+
+            &-name {
+                @include fontSW(1rem, 700);
+                text-transform: uppercase;
+            }
+
+            &-role {
+                @include fontSW(.7rem, 400);
+                text-transform: uppercase;
+                color: var(--color-tertiary);
+                margin-top: 1px;
+            }
+        }
+
+    }
+}
+
+
+
+
+
+/////////////////////////////////////
+///////// NEWSLETTER
+
+.newsletter {
+    @include flexCenterAround(center, space-around);
+    flex-direction: column;
+    height: 0rem;
+
+    &__heading {
+        @include fontSW(2rem, 800);
+        text-transform: uppercase;
+        color: var(--color-light-1);
+    }
+
+    &__subscribe {
+        @include flexCenterAround(center, space-between);
+        background-color: var(--color-light-1);
+        width: 550px;
+
+        @include respond(phone) {
+            width: 300px;
+
+            flex-direction: column;
+        }
+
+        &--input {
+            @include fontSW(.8rem, 700);
+            color: var(--color-grey-1);
+
+            border: none;
+            width: 90%;
+            padding: 1rem;
+
+            @include respond(phone) {
+                
+            }
+        }
+
+        &--button {
+            @include fontSW(.8rem, 600);
+            text-transform: uppercase;
+
+            color: var(--color-light-1);
+            background-color: var(--color-cvartiary);
+
+
+            border: none;
+            margin-right: 1rem;
+            padding: .4rem 1.5rem;
+            justify-self: flex-end;
+            cursor: pointer;
+
+            @include respond(phone) {
+                margin: 0;
+                width: 100%;
+                padding: .6rem 1.5rem;
+            }
+        }
+    }
+}
+
+
+
+/////////////////////////////////////
+///////// CONTACT
+
+.contact {
+    position: relative;
+
+    &__container {
+        @include centerXY(50%, 50%);
+        @include flexCenterAround(center, space-between);
+        box-shadow: 0 0 4rem rgba(0, 0, 0, 0.3);
+
+        @include respond(phone) {
+            flex-direction: column;
+        }
+    }
+
+    &__form {
+        @include flexCenterAround(flex-start, space-around);
+        
+        flex-direction: column;
+
+        padding: 4rem 8rem;
+        padding-left: 3rem;
+        padding-right: 12rem;
+        background-color: var(--color-light-1);
+
+        @include respond(phone) {
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        &--paragraph {
+            @include fontSW(1.6rem, 400);
+            color: var(--color-grey-4);
+            margin-bottom: 2rem;
+        }
+
+        &--input {
+            color: var(--color-grey-1);
+            border: none;
+            border-bottom: 1px solid var(--color-light-2);
+
+            width: 50%;
+            padding: .5rem 0;
+            margin-bottom: 2rem;
+
+            @include respond(tab-land) {
+                width: 150%;
+            }
+        }
+
+        &--button {
+            color: var(--color-grey-1);
+            background-color: transparent;
+
+            padding: .4rem .6rem;
+            border: 1px solid currentColor;
+
+            cursor: pointer;
+            transition: .5s all ease;
+
+            &:hover {
+                background-color: var(--color-grey-1);
+                color: var(--color-light-1);
+            }
+
+            @include respond(tab-land) {
+                padding: .2rem .4rem;
+            }
+
+            @include respond(phone) {
+                padding: .4rem 2rem;
+            }
+        }
+    }
+
+    &__info {
+        @include flexCenterAround(flex-start, center);
+        align-self: stretch;
+        flex-direction: column;
+
+        padding: 2rem;
+        color: var(--color-light-1);
+        background-color: var(--color-primary);
+
+        @include respond(phone) {
+            display: none;
+        }
+
+        &--paragraph {
+            @include fontSW(1rem, 400);
+            @include textSpacing(5px, 5px);
+            margin-top: -12rem;
+            margin-bottom: 2rem;
+        }
+
+        &--span {
+            @include fontSW(2rem, 600);
+            margin-bottom: 2rem;
+        }
+
+        &--items {
+            @include flexCenterAround(flex-start, space-around);
+            flex-direction: column;
+            height: 5rem;
+        }
+
+        &--item {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+
+            &-icon {
+                font-size: 1.25rem;
+                align-self: stretch;
+                margin-right: 1.25rem;
+            }
+
+            &-paragraph {
+                @include fontSW(1rem,300);
+            }
+        }
+    }
+}
+
+
+
+
+/////////////////////////////////////
+///////// FOOTER
+
+.footer {
+    font-size: 1rem;
+
+    & a {
+        color: var(--color-primary);
+        text-decoration: none;
+    }
+}

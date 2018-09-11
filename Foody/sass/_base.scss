@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+body {
+    font-size: 62.5%;
+    font-family: 'Muli', sans-serif;
+
+    @include respond(tab-land) {
+        font-size: 56.25%; 
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%; 
+    }
+
+    @include respond(phone) {
+        font-size: 30%;
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; 
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+
+:root {
+    --color-primary: #AC8949;
+    --color-secondary: #F79B3B;
+    --color-tertiary: #ED3537;
+    --color-cvartiary: #F83809;
+
+    --color-dark-1: #000;
+    --color-dark-2: #1D1D1D;
+
+    --color-light-1: #fff;
+    --color-light-2: #e4e1e1;
+    --color-light-3: #F8F6F7;
+
+    --color-grey-1: #9B999A;
+    --color-grey-2: #929292;
+    --color-grey-3: #464646;
+    --color-grey-4: #5E5F5B;
+}
+
+
+
+.active {
+    color: var(--color-primary)!important;
+}
