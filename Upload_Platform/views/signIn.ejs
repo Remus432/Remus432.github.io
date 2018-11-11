@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SIGN UP</h1>
+    <form class="form"  enctype="multipart/form-data" action="/" method="POST">
+        <input class="form--email" name="email" type="email" placeholder="Email" required>
+        <input class="form--password" name="password" type="password" placeholder="Password">
+        <input type="file" id="upload" name="item"/>
+        <input class="form--btn"  type="submit">
+        <img src=""/>
+    </form>
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script>
+       const socket = io();
+
+       const email = document.querySelector(".form--email");
+       const password = document.querySelector(".form--password");
+
+        socket.on("connect", () => {
+            console.log("Connected");
+
+            const form = document.querySelector("form");
+        
+
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                previewFile();
+                
+                
+            }, false);
+
+            function previewFile() {
+                    var preview = document.querySelector('img');
+                    var file    = document.querySelector('input[type=file]').files[0];
+                    var reader  = new FileReader();
+
+                    reader.addEventListener("load", function () {
+                        let data = {
+                            email: email.value,
+                            password: password.value,
+                            avatar: reader.result
+                        };
+
+                  
+                    
+                        socket.emit("data", data);
+                        
+                        
+                    }, false);
+
+                    if (file) {
+                        reader.readAsDataURL(file);
+
+                    }
+                }
+        })
+
+        
+    </script>
+</body>
+</html>
