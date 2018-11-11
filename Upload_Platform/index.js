@@ -95,7 +95,7 @@ io.on("connection", socket => {
 })
 
 // Post
-app.post("/", upload.single("item"), (req, res) => {
+/*app.post("/", upload.single("item"), (req, res) => {
     console.log(`Email: ${req.body.email} Password: ${req.body.password}`);
 
     
@@ -126,7 +126,7 @@ app.post("/", upload.single("item"), (req, res) => {
         .catch(err => {
             console.log(err.code, err.message);
         });*/
-})
+//})*/
 
 
 
@@ -137,4 +137,4 @@ app.post("/", upload.single("item"), (req, res) => {
 })*/
 
 
-http.listen(3000, () => console.log("Server is up and running..."));
+http.listen(process.env.PORT || 3000, () => console.log("Server is up and running..."));
