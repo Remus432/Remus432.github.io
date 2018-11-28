@@ -64,11 +64,13 @@ const users = firebase.database().ref("users");
 io.on("connection", socket => {
     console.log("Socket connected");
 
-    socket.on("data", data => {
+    socket.on("signUp", data => {
         // Get Data Body
         const email = data.email;
         const password = data.password;
         const avatar = data.avatar;
+        const images = ["dasd"];
+        const videos = ["dsad"];
 
         // Push New User
         let newUser = users.push();
@@ -79,55 +81,83 @@ io.on("connection", socket => {
             const url = result.url
 
             // Set New User Object
-            newUser.set({ email, password, url});
+            newUser.set({ email, password, url, images, videos});
 
             console.log(url);
         });
 
-        // Authenticate User
+        // Create User
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .catch(err => {
             console.log(err.code, err.message);
         });
     })
 
+
+    // Sign In User
+    socket.on("signIn", data => {
+        // Get Data Body
+        const email = data.email;
+        const password = data.password;
+
+        // Auth User
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .catch(err => {
+                console.log(err.code, err.message);
+                let data = "Please check again your email/password";
+                socket.emit("error", data);
+            })
+
+        // Get Signed In User
+        firebase.auth().onAuthStateChanged(user => {
+            if(user) {
+                console.log(user);
+                firebase.database().ref("users").on("value", snapshot => {
+                    let dataObj = Object.values(snapshot.val());
+                    //console.log(dataObj);
+                    console.log(email);
+                    console.log(dataObj.filter(obj => obj.email === email));
+                });
+            } else {
+                console.log("User is not signed in");
+            }
+        })
+
+    })
+
+
+    // Get First Video
+    socket.on("firstVideo", data => {
+        console.log(data);
+    })
+
     socket.on("disconnect", () => console.log("Disconencted"));
 })
 
+
+
+
 // Post
-/*app.post("/", upload.single("item"), (req, res) => {
-    console.log(`Email: ${req.body.email} Password: ${req.body.password}`);
+app.post("/welcome", (req, res) => {
+    
 
     
 
-    // Get Email And Password From Form
-   /* const email = req.body.email;
-    const password = req.body.password;
 
-    // Push New User
-    let newUser = users.push();
-
-    // Set New User Object
-    newUser.set({ email, password });
-    
-    console.log("Files", req.file);
-
-
-    //cloudinary.uploader.upload(req.file.item.originalname, (result) => console.log(result));
     
     // Render Thanks Page
     /*res.render(("thanks.ejs"), {
-        email: req.body.email,
-        password: req.body.password
+        email: "dasdasdasd",
+        password: "21312edqw"
     });*/
+    res.render("welcome.ejs");
 
-    // Create User On SignUp
-    /*firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(err => {
-            console.log(err.code, err.message);
-        });*/
-//})*/
+})
 
+
+app.get("/signUp", (req, res) => {
+    res.render("signUp.ejs");
+})
 
 
 // Sample Data
